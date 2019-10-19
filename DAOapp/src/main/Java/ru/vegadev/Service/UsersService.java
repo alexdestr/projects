@@ -59,13 +59,13 @@ public class UsersService extends DBConnect implements DAO {
     public void add(Users users) throws SQLException {
         PreparedStatement preparedStatement = null;
 
-        String sql = "INSERT INTO \"Users\" (user_id, login, hash_password, user_name, user_last_name, date_of_registration) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO \"Users\" (login, hash_password, user_name, user_last_name, date_of_registration) VALUES (?, ?, ?, ?, ?)";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setLong(1,users.getUser_id());
-            preparedStatement.setString(2,users.getLogin());
+            preparedStatement.setString(1,users.getLogin());
+            preparedStatement.setString(2,users.getHash_password());
             preparedStatement.setString(3,users.getUser_name());
             preparedStatement.setString(4,users.getUser_last_name());
             preparedStatement.setDate(5,users.getDate_of_registration());
@@ -77,12 +77,48 @@ public class UsersService extends DBConnect implements DAO {
     }
 
     @Override
-    public void read(long ID) throws SQLException {
+    public Users read(long ID) throws SQLException {
 
+        PreparedStatement preparedStatement = null;
+
+        String sql = "SELECT * FROM \"Users\" WHERE user_id = ?";
+        Users users = new Users();
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1, ID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            users.setUser_id(resultSet.getLong("user_id"));
+            users.setLogin(resultSet.getString("login"));
+            users.setHash_password(resultSet.getString("hash_password"));
+            users.setUser_name(resultSet.getString("user_name"));
+            users.setUser_last_name(resultSet.getString("user_last_name"));
+            users.setDate_of_registration(resultSet.getDate("date_of_registration"));
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
     }
 
     @Override
     public void delete(long ID) throws SQLException {
+
+        PreparedStatement preparedStatement = null;
+
+        String sql = "DELETE FROM \"Users\" WHERE user_id = ?";
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setLong(1, ID);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

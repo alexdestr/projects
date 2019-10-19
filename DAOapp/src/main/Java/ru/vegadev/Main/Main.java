@@ -6,6 +6,8 @@ import ru.vegadev.Entity.Users;
 import ru.vegadev.Service.UsersService;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -29,14 +31,19 @@ public class Main {
 
         UsersService usersService = new UsersService(); // переделать под Spring
 
+ /*      создание Users
+
         Users users = new Users();
         users.setLogin("User");
         users.setHash_password("1SD_PF32");
         users.setUser_name("John");
         users.setUser_last_name("Alfred");
-        users.setDate_of_registration(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+        long milis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(milis);
+        users.setDate_of_registration(date);
 
-        usersService.add(users);
+ */  //     usersService.add(users); // добавить пользователя в БД
+//        usersService.delete(7); // удалить пользователя из БД
 
         for (int i = 0; i < usersService.getAll().size(); i++) {
             System.out.println(usersService.getAll().get(i));
@@ -47,4 +54,5 @@ public class Main {
         dbConnect.connectToDataBase().close();
 
     }
+
 }
