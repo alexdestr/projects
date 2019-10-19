@@ -31,19 +31,20 @@ public class Main {
 
         UsersService usersService = new UsersService(); // переделать под Spring
 
- /*      создание Users
-
+        //      создание Users
+/*
         Users users = new Users();
-        users.setLogin("User");
-        users.setHash_password("1SD_PF32");
-        users.setUser_name("John");
-        users.setUser_last_name("Alfred");
+        users.setLogin("NotUser");
+        users.setHash_password("Not_hash_password");
+        users.setUser_name("NotJohn");
+        users.setUser_last_name("NotAlfred");
         long milis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(milis);
         users.setDate_of_registration(date);
-
- */  //     usersService.add(users); // добавить пользователя в БД
+*/
+//     usersService.add(users); // добавить пользователя в БД
 //        usersService.delete(7); // удалить пользователя из БД
+//        usersService.update(5, users);
 
         for (int i = 0; i < usersService.getAll().size(); i++) {
             System.out.println(usersService.getAll().get(i));

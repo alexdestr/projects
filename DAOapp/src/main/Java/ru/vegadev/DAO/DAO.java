@@ -11,6 +11,6 @@ public interface DAO {
     public void add(Users users) throws SQLException;
     public Users read(long ID) throws  SQLException;
     public void delete(long ID) throws SQLException;
-    public void update(String s) throws SQLException;
+    public void update(long ID, Users users) throws SQLException;
 
 }

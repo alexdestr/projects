@@ -123,7 +123,27 @@ public class UsersService extends DBConnect implements DAO {
     }
 
     @Override
-    public void update(String s) throws SQLException {
+    public void update(long ID, Users users) throws SQLException {
+
+        PreparedStatement preparedStatement = null;
+
+        String sql = "UPDATE \"Users\" SET login = ?, hash_password = ?, user_name = ?, user_last_name = ?, date_of_registration = ? WHERE user_id = ?";
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, users.getLogin());
+            preparedStatement.setString(2, users.getHash_password());
+            preparedStatement.setString(3, users.getUser_name());
+            preparedStatement.setString(4, users.getUser_last_name());
+            preparedStatement.setDate(5, users.getDate_of_registration());
+            preparedStatement.setLong(6, ID);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }
