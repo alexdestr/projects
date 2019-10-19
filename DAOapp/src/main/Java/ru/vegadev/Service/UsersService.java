@@ -4,10 +4,7 @@ import ru.vegadev.DAO.DAO;
 import ru.vegadev.DBConnect.DBConnect;
 import ru.vegadev.Entity.Users;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +32,7 @@ public class UsersService extends DBConnect implements DAO {
         try {
          statement = connection.createStatement();
 
+
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
@@ -45,7 +43,7 @@ public class UsersService extends DBConnect implements DAO {
                 users.setHash_password(resultSet.getString("hash_password"));
                 users.setUser_name(resultSet.getString("user_name"));
                 users.setUser_last_name(resultSet.getString("user_last_name"));
-                users.setDate_of_registration(resultSet.getString("date_of_registration"));
+                users.setDate_of_registration(resultSet.getDate("date_of_registration"));
 
                 usersList.add(users);
             }
@@ -58,8 +56,24 @@ public class UsersService extends DBConnect implements DAO {
     }
 
     @Override
-    public void add(Object o) throws SQLException {
+    public void add(Users users) throws SQLException {
+        PreparedStatement preparedStatement = null;
 
+        String sql = "INSERT INTO \"Users\" (user_id, login, hash_password, user_name, user_last_name, date_of_registration) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setLong(1,users.getUser_id());
+            preparedStatement.setString(2,users.getLogin());
+            preparedStatement.setString(3,users.getUser_name());
+            preparedStatement.setString(4,users.getUser_last_name());
+            preparedStatement.setDate(5,users.getDate_of_registration());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -69,6 +83,11 @@ public class UsersService extends DBConnect implements DAO {
 
     @Override
     public void delete(long ID) throws SQLException {
+
+    }
+
+    @Override
+    public void update(String s) throws SQLException {
 
     }
 }

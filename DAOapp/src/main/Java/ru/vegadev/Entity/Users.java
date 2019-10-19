@@ -1,9 +1,6 @@
 package ru.vegadev.Entity;
 
-import ru.vegadev.DAO.DAO;
-
-import java.sql.SQLException;
-import java.util.List;
+import java.util.Date;
 import java.util.Objects;
 
 public class Users{
@@ -13,7 +10,7 @@ public class Users{
     private String hash_password;
     private String user_name;
     private String user_last_name;
-    private String date_of_registration;
+    private java.sql.Date date_of_registration;
 
     public long getUser_id() {
         return user_id;
@@ -55,11 +52,11 @@ public class Users{
         this.user_last_name = user_last_name;
     }
 
-    public String getDate_of_registration() {
+    public java.sql.Date getDate_of_registration() {
         return date_of_registration;
     }
 
-    public void setDate_of_registration(String date_of_registration) {
+    public void setDate_of_registration(java.sql.Date date_of_registration) {
         this.date_of_registration = date_of_registration;
     }
 
