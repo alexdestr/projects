@@ -1,6 +1,6 @@
 package ru.vegadev.Service;
 
-import ru.vegadev.DAO.DAO;
+import ru.vegadev.DAO.UsersDAO;
 import ru.vegadev.DBConnect.DBConnect;
 import ru.vegadev.Entity.Users;
 
@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersService extends DBConnect implements DAO {
+public class UsersService extends DBConnect implements UsersDAO {
 
     private Connection connection;
 
@@ -123,7 +123,7 @@ public class UsersService extends DBConnect implements DAO {
     }
 
     @Override
-    public void update(long ID, Users users) throws SQLException {
+    public void update(Users users) throws SQLException {
 
         PreparedStatement preparedStatement = null;
 
@@ -137,7 +137,7 @@ public class UsersService extends DBConnect implements DAO {
             preparedStatement.setString(3, users.getUser_name());
             preparedStatement.setString(4, users.getUser_last_name());
             preparedStatement.setDate(5, users.getDate_of_registration());
-            preparedStatement.setLong(6, ID);
+            preparedStatement.setLong(6, users.getUser_id());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

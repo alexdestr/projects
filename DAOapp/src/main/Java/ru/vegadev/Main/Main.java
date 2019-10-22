@@ -2,7 +2,9 @@ package ru.vegadev.Main;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.vegadev.DBConnect.DBConnect;
+import ru.vegadev.Entity.News;
 import ru.vegadev.Entity.Users;
+import ru.vegadev.Service.NewsService;
 import ru.vegadev.Service.UsersService;
 
 import java.sql.SQLException;
@@ -50,7 +52,24 @@ public class Main {
             System.out.println(usersService.getAll().get(i));
         }
 
+        System.out.println("\n");
 
+        NewsService newsService = new NewsService();
+        for (int i = 0; i < newsService.getAll().size(); i++) {
+            System.out.println(newsService.getAll().get(i));
+        }
+
+        News news = new News();
+        news.setNews_id(21L);
+        news.setAuthor_id(3L);
+        news.setTittle("?");
+        news.setNews_text("noonono");
+        long milis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(milis);
+        news.setPublic_date(date);
+//        newsService.add(news);
+//        newsService.delete(4L);
+//        newsService.update(news);
 
         dbConnect.connectToDataBase().close();
 
