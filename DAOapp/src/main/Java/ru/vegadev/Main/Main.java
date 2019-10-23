@@ -31,10 +31,10 @@ public class Main {
             System.out.println("Connection failed!");
         }
 
-        UsersService usersService = new UsersService(); // переделать под Spring
+/*        UsersService usersService = new UsersService(); // переделать под Spring
 
         //      создание Users
-/*
+
         Users users = new Users();
         users.setLogin("NotUser");
         users.setHash_password("Not_hash_password");
@@ -43,7 +43,7 @@ public class Main {
         long milis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(milis);
         users.setDate_of_registration(date);
-*/
+//
 //     usersService.add(users); // добавить пользователя в БД
 //        usersService.delete(7); // удалить пользователя из БД
 //        usersService.update(5, users);
@@ -69,7 +69,9 @@ public class Main {
         news.setPublic_date(date);
 //        newsService.add(news);
 //        newsService.delete(4L);
-//        newsService.update(news);
+//       newsService.update(news);
+*/
+
 
         dbConnect.connectToDataBase().close();
 
