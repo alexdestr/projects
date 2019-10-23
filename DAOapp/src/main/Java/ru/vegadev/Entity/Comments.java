@@ -7,7 +7,7 @@ public class Comments {
 
     private long comment_id;
     private long news_id;
-    private String author_id;
+    private long author_id;
     private String comment_text;
     private Date sending_date;
 
@@ -27,12 +27,12 @@ public class Comments {
         this.news_id = news_id;
     }
 
-    public String getAithor_id() {
+    public long getAuthor_id() {
         return author_id;
     }
 
-    public void setAithor_id(String aithor_id) {
-        this.author_id = aithor_id;
+    public void setAuthor_id(long aithor_id) {
+        this.author_id = author_id;
     }
 
     public String getComment_text() {
