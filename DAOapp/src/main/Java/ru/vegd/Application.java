@@ -1,7 +1,11 @@
 package ru.vegd;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import ru.vegd.dao.CommentDAO;
+import ru.vegd.entity.Comment;
 
 import java.sql.SQLException;
 
